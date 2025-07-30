@@ -1,13 +1,14 @@
 version: '3.8'
-
 services:
   worker:
     build: .
-    container_name: snipesend-worker-app
+    container_name: worker-app
     ports:
       - "4000:4000"
-    env_file:
-      - .env
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - REDIS_URL=redis://default:GpDu8KYKJRJYcPVDZDCJ6D9NWZRyHspO@redis-16707.crce197.us-east-2-1.ec2.redns.redis-cloud.com:16707
     restart: unless-stopped
     healthcheck:
       test: [
